@@ -13,6 +13,28 @@ password = ("Temp")
 
 def try_login():
     print("Trying to login...")
+    #Login
+    #Maakt het frame voor in te loggen
+    login_window = Tk()
+    login_window.resizable(width=FALSE, height=FALSE)
+    login_window.title("Log-In")
+    login_window.geometry("250x160")
+    #Maakt de username en wachtwoord textboxen en de buttons
+    username_text = Label(login_window, text="Username:")
+    username_guess = Entry(login_window)
+    password_text = Label(login_window, text="Password:")
+    password_guess = Entry(login_window, show="*")
+    #Maakt login button
+    attempt_login = Button(login_window,text="Login", command=try_login)
+    #Maakt registratie button
+    attempt_register = Button(login_window,text="Registreer", command=try_register)
+    #Toont alles in de gui Login
+    username_text.pack()
+    username_guess.pack()
+    password_text.pack()
+    password_guess.pack()
+    attempt_login.pack()
+    attempt_register.pack()
     if username_guess.get() == username and password_guess.get() == password:
         messagebox.showinfo("-- COMPLETE --", "You Have Now Logged In.", icon="info")
     else:
@@ -42,29 +64,23 @@ def try_register():
 
 #Login
 #Maakt het frame voor in te loggen
-login_window = Tk()
-login_window.resizable(width=FALSE, height=FALSE)
-login_window.title("Log-In")
-login_window.geometry("250x160")
-#Maakt de username en wachtwoord textboxen en de buttons
-username_text = Label(login_window, text="Username:")
-username_guess = Entry(login_window)
-password_text = Label(login_window, text="Password:")
-password_guess = Entry(login_window, show="*")
-#Maakt login button
-attempt_login = Button(login_window,text="Login", command=try_login)
-#Maakt registratie button
-attempt_register = Button(login_window,text="Registreer", command=try_register)
-#Toont alles in de gui Login
-username_text.pack()
-username_guess.pack()
-password_text.pack()
-password_guess.pack()
-attempt_login.pack()
-attempt_register.pack()
+start_window = Tk()
+start_window.resizable(width=FALSE, height=FALSE)
+start_window.title("Thuisbioscoop")
+start_window.geometry("500x500")
+#Maakt de buttons
+#Maakt aanbieder button
+attempt_aanbieder = Button(start_window,text="Ik ben een aanbieder", command=try_login)
+attempt_aanbieder.pack(side="left")
+#Maakt bezoeker button
+attempt_bezoeker = Button(start_window,text="Ik ben een bezoeker.", command=try_register)
+attempt_bezoeker.pack(side="right")
+#Toont alles in de gui start
+attempt_aanbieder.pack()
+attempt_bezoeker.pack()
 
 #Main Starter
-login_window.mainloop()
+start_window.mainloop()
 
 def openAPI():
     datumVandaag = time.strftime("%d-%m-%Y")
